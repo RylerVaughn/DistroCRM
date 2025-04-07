@@ -25,6 +25,7 @@ def start_browser_and_django():
 
     #use this one when developing so you get fast static reloads.
     django_server_proc = subprocess.Popen([DJANGO_URL, "manage.py", "runserver", "8000"], env=env, cwd=DISTRIBUTOR_PATH)
+    
     time.sleep(2)
     browser_proc = webbrowser.open("http://localhost:8000/")
 
