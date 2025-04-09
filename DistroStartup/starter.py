@@ -21,10 +21,10 @@ def start_browser_and_django():
     env['DJANGO_SETTINGS_MODULE'] = "Distributor.settings"      
 
     # use this one went you want to test full functionality with websockets.
-    #uvicorn_server_proc = subprocess.Popen([UVICORN_URL, "Distributor.asgi:application", "--reload"], cwd=DISTRIBUTOR_PATH, env=env)\
+    uvicorn_server_proc = subprocess.Popen([UVICORN_URL, "Distributor.asgi:application", "--reload"], cwd=DISTRIBUTOR_PATH, env=env)\
 
     #use this one when developing so you get fast static reloads.
-    django_server_proc = subprocess.Popen([DJANGO_URL, "manage.py", "runserver", "8000"], env=env, cwd=DISTRIBUTOR_PATH)
+    #django_server_proc = subprocess.Popen([DJANGO_URL, "manage.py", "runserver", "8000"], env=env, cwd=DISTRIBUTOR_PATH)
     
     time.sleep(2)
     browser_proc = webbrowser.open("http://localhost:8000/")
