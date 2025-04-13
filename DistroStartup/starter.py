@@ -25,7 +25,7 @@ def start_browser_and_django():
 
     #use this one when developing so you get fast static reloads.
     #django_server_proc = subprocess.Popen([DJANGO_URL, "manage.py", "runserver", "8000"], env=env, cwd=DISTRIBUTOR_PATH)
-    
+
     time.sleep(2)
     browser_proc = webbrowser.open("http://localhost:8000/")
 
@@ -106,13 +106,18 @@ def start_node_server():
     node_path = ROOT_PATH + "/DistroHook/index.js"
     try:
         subprocess.Popen(["node", node_path])
-        time.sleep(1)
         print("\nNode startup Successful, Listening on port 3333\n")
     except:
         print("\nFailed to start node.js server\n")
 
 
+def start_redis_server():
+    subprocess.Popen(["redis-server"])
+    time.sleep(1.0)
+
+
 start_node_server()
+start_redis_server()
 public_ngrok_domain = start_ngrok_and_get_domain()
 update_twilio_webhook(public_ngrok_domain)
 start_browser_and_django()
