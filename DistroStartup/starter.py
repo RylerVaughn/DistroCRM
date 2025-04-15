@@ -6,9 +6,10 @@ import time
 import requests
 from twilio.rest import Client
 import signal
+import shutdown
 
 
-ROOT_PATH = "/home/ryler/Documents/ProgrammingProjects/DistributorCRM"
+ROOT_PATH = "/home/rynutty/Documents/ProgrammingProjects/DistributorCRM"
 DISTRIBUTOR_PATH = ROOT_PATH + "/Distributor"
 UVICORN_URL = DISTRIBUTOR_PATH + "/.venv/bin/uvicorn"
 DJANGO_URL = DISTRIBUTOR_PATH + "/.venv/bin/python3"
@@ -52,7 +53,7 @@ def start_ngrok_and_get_domain():
         #kill used because ngrok failed so we dont want to give the ngrok process time to clean up because it may be stuck, which would in turn timeout our program.
         try:
             ngrok_proc.kill()
-            print("\nNgrok terminated.\n")
+            print("\nNgrok successfully terminated.\n")
         except:
             print("\nNgrok failed.\n")
 
@@ -117,6 +118,7 @@ def start_redis_server():
 
 
 start_node_server()
+shutdown.clear_redis_cache()
 start_redis_server()
 public_ngrok_domain = start_ngrok_and_get_domain()
 update_twilio_webhook(public_ngrok_domain)

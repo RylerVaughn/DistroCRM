@@ -1,4 +1,4 @@
-#!/home/ryler/Documents/ProgrammingProjects/DistributorCRM/DistroStartup/.venv/bin/python3
+#!/home/rynutty/Documents/ProgrammingProjects/DistributorCRM/DistroStartup/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
